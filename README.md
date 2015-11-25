@@ -1,1 +1,1 @@
-# how-to-build-a-wordpress-plugin-part-1
+# Tigerton IE Compatibility Checker

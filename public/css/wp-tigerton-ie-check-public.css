@@ -3,6 +3,9 @@
  * included in this file.
  */
  
+ /**
+ * PopUp styles
+ */
  #tigerton-ie-checker-popup-bg{
 	position: fixed;
 	top: 		0;
@@ -11,7 +14,7 @@
 	right: 		0;
 	
 	background: rgba(0, 0, 0, 0.5);
-	
+
 	width: 100vw;
 	height: 100vh;
 	
@@ -25,24 +28,22 @@
 	left: 50%;
 	transform: translate(-50%, -50%);
 	text-align: center;
-	
 	border: 1px solid transparent;
 	border-radius: 8px;
-	
 	padding: 20px;
 	background: rgb(255, 255, 255);
-	
 	min-width: 100px;
 	min-height: 100px;
  }
  
- #tigerton-ie-checker-popup-button{
-	position: absolute;
-	top: 2px;
-	right: 2px;
-	
-	border: 1px solid transparent;
-	border-radius: 100%;
-	
-	background: rgb(128, 128, 128);
+ #tigerton-ie-checker-buttons{
+ 	position: relative;
+	width: 100%;
+ }
+ 
+ #tigerton-ie-checker-close-button, #tigerton-ie-checker-dismiss-button{
+	position: relative;
+	margin: 10px 0px 10px 0px;
+	color: #000;
+	width: 100%;
  }

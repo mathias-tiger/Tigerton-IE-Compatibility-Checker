@@ -2,19 +2,9 @@
 
 /**
  * Provide a admin area view for the plugin
- *
  * This file is used to markup the admin-facing aspects of the plugin.
- *
- * @link       http://lostwebdesigns.com
- * @since      1.0.0
- *
- * @package    Wp_Cbf
- * @subpackage Wp_Cbf/admin/partials
  */
 ?>
-
-<!-- This file should primarily consist of HTML with a little bit of PHP. -->
-
 <div class="wrap">
 
 	<h2 class="nav-tab-wrapper"><?php echo esc_html( get_admin_page_title() ); ?></h2>
@@ -23,13 +13,23 @@
 		<?php
 			$options = get_option($this->plugin_name);
 	
-			$check_always 	= $options['check_always'];		
-			$popup_text  	= $options['popup_text'];
+			$check_always 		= $options['check_always'];		
+			$check_never_again 	= $options['check_never_again'];		
+			$popup_text  		= $options['popup_text'];
 		
 			settings_fields( $this->plugin_name );
 			do_settings_sections( $this->plugin_name );
 		?>
 	
+		<fieldset>
+			<legend class="screen-reader-text"><span><?php _e('Allow users to disable the IE Compatibility mode checker', $this->plugin_name);?></span></legend>
+			<label for="<?php echo $this->plugin_name;?>-check_never_again">
+				<input type="checkbox" id="<?php echo $this->plugin_name;?>-check_never_again" 
+				name="<?php echo $this->plugin_name;?>[check_never_again]" value="1" <?php checked( $check_never_again, 1 ); ?>  />
+				<span><?php esc_attr_e( 'Allow users to disable the IE Compatibility mode checker', $this->plugin_name ); ?></span>
+			</label>
+		</fieldset>
+
 		<fieldset>
 			<legend class="screen-reader-text"><span><?php _e('Always Check IE Compatibility mode', $this->plugin_name);?></span></legend>
 			<label for="<?php echo $this->plugin_name;?>-check_always">
@@ -40,11 +40,10 @@
 		</fieldset>
 		
 <!--	
-// visa alltid eller bara en gång
-	
-// visa enbart på startsidan 
+// - visa alltid eller bara en gång 
 // klicka bort så att den aldrig mer syns
-	-->
+// visa enbart på startsidan 
+-->
 		<br/>
 		
 		<fieldset> 
