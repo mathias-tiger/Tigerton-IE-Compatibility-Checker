@@ -14,6 +14,7 @@
 	
 			$check_always 		  = $options['check_always'];		
 			$check_never_again 	  = $options['check_never_again'];		
+			$popup_title  		  = $options['popup_title'];
 			$popup_text  		  = $options['popup_text'];
 			$css_off 			  = $options['css_off'];
 			$check_only_on		  = $options['check_only_on'];
@@ -37,7 +38,7 @@
 				<input type="checkbox" id="<?php echo $this->plugin_name;?>-check_always" 
 				name="<?php echo $this->plugin_name;?>[check_always]" value="1" <?php checked( $check_always, 1 ); ?>  />
 				<span><?php esc_attr_e( 'Always check for ie compatibility mode ', $this->plugin_name ); ?></span>
-				<i><?php esc_attr_e( '(even if it is a returning user and have disable the checker)', $this->plugin_name ); ?></i>
+				<i><?php esc_attr_e( '(even if it is a returning user and have the checker disabled)', $this->plugin_name ); ?></i>
 			</label>
 		</fieldset>
 		
@@ -64,12 +65,23 @@
 		<br/>
 		
 		<fieldset> 
-			<legend class="screen-reader-text"><span><?php _e('Choose your prefered popup text', $this->plugin_name);?></span></legend>
-			<label for="<?php echo $this->plugin_name;?>-popup_text">
-			<span><?php esc_attr_e( 'Choose your prefered popup text', $this->plugin_name ); ?></span><br/>
-				<input type="text" class="regular-text" id="<?php echo $this->plugin_name;?>-popup_text" 
-				name="<?php echo $this->plugin_name;?>[popup_text]" value="<?php if(!empty($popup_text)) echo $popup_text;?>"
+			<legend class="screen-reader-text"><span><?php _e('Choose your preferred popup title', $this->plugin_name);?></span></legend>
+			<label for="<?php echo $this->plugin_name;?>-popup_title">
+			<span><?php esc_attr_e( 'Choose your preferred popup title', $this->plugin_name ); ?></span><br/>
+				<input type="text" class="regular-text" id="<?php echo $this->plugin_name;?>-popup_title" 
+				name="<?php echo $this->plugin_name;?>[popup_title]" value="<?php if(!empty($popup_title)) echo $popup_title;?>"
 				placeholder="<?php esc_attr_e( 'Please turn of ie compatibility mode', $this->plugin_name ); ?>" />	                    
+			</label>
+		</fieldset>
+		
+		<fieldset> 
+			<legend class="screen-reader-text"><span><?php _e('Choose your preferred popup text', $this->plugin_name);?></span></legend>
+			<label for="<?php echo $this->plugin_name;?>-popup_text">
+			<span><?php esc_attr_e( 'Choose your preferred popup text', $this->plugin_name ); ?></span><br/>
+				<textarea rows="4" cols="50" 
+					id="<?php echo $this->plugin_name;?>-popup_text" 
+					name="<?php echo $this->plugin_name;?>[popup_text]" 
+					placeholder="<?php esc_attr_e( 'Compatibility mode in IE is a feature that helps you view webpages that were designed for previous versions of the browser, however having it enabled can break newer sites that were designed for modern browsers.', $this->plugin_name ); ?>"><?php if(!empty($popup_text)) echo $popup_text;?></textarea>               
 			</label>
 		</fieldset>
 		
@@ -81,6 +93,7 @@
 				<input type="checkbox" id="<?php echo $this->plugin_name;?>-css_off" 
 				name="<?php echo $this->plugin_name;?>[css_off]" value="1" <?php checked( $css_off, 1 ); ?>  />
 				<span><?php esc_attr_e( 'Do not load plugin css', $this->plugin_name ); ?></span>
+				<i><?php esc_attr_e( '(you need to create your own styles for the popup)', $this->plugin_name ); ?></i>
 			</label>
 		</fieldset>
 		

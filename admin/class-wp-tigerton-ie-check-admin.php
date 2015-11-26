@@ -117,6 +117,7 @@ class Wp_tigerton_ie_check_Admin {
 		$valid['check_never_again'] 	= ( isset($input['check_never_again']) && !empty($input['check_never_again']) ) ? 1 : 0;
 		$valid['css_off'] 				= ( isset($input['css_off']) && !empty($input['css_off']) ) ? 1 : 0;
 		$valid['check_only_on'] 		= intval( $input['check_only_on'] );
+		$valid['popup_title'] 			= sanitize_text_field($input['popup_title']);
 		$valid['popup_text'] 			= sanitize_text_field($input['popup_text']);
 		
 		return $valid;

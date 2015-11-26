@@ -10,11 +10,21 @@
 <div id="tigerton-ie-checker-popup-bg">
 	<div id="tigerton-ie-checker-popup-inner">
 		<?php 
-			if( !empty($popup_text) ) {
-				echo '<h1>' . esc_attr__( $popup_text, $this->plugin_name ) . '</h1>'; 
+			if( !empty($popup_title) ) {
+				echo '<h1>' . esc_attr__( $popup_title, $this->plugin_name ) . '</h1>'; 
 			}
 			else { 
 				echo '<h1>' . __('Please turn of ie compatibility mode', $this->plugin_name) . '</h1>'; 
+			}
+			
+			if( !empty($popup_text) ) {
+				echo '<p>' . esc_attr__( $popup_text, $this->plugin_name ) . '</p>'; 
+			}
+			else { 
+				echo '<p>' . 
+				__('Compatibility mode in IE is a feature that helps you view webpages that were designed for previous versions of the browser, 
+				however having it enabled can break newer sites that were designed for modern browsers.', $this->plugin_name)
+				 . '</p>'; 
 			}
 		?>
 		<div id="tigerton-ie-checker-buttons">
