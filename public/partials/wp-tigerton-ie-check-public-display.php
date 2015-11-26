@@ -2,7 +2,6 @@
 /**
  * Provide a public-facing view for the plugin
  */
-	 
 	$options 	= get_option($this->plugin_name);
 	$popup_text = $options['popup_text'];
 	$dontCheck  = $options['check_never_again'];

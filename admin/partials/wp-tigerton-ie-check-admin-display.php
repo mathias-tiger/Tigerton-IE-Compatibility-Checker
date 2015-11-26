@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Provide a admin area view for the plugin
  * This file is used to markup the admin-facing aspects of the plugin.
@@ -16,8 +15,8 @@
 			$check_always 		  = $options['check_always'];		
 			$check_never_again 	  = $options['check_never_again'];		
 			$popup_text  		  = $options['popup_text'];
-			$check_only_frontpage = $options['check_only_frontpage'];
 			$css_off 			  = $options['css_off'];
+			$check_only_on		  = $options['check_only_on'];
 		
 			settings_fields( $this->plugin_name );
 			do_settings_sections( $this->plugin_name );
@@ -37,16 +36,28 @@
 			<label for="<?php echo $this->plugin_name;?>-check_always">
 				<input type="checkbox" id="<?php echo $this->plugin_name;?>-check_always" 
 				name="<?php echo $this->plugin_name;?>[check_always]" value="1" <?php checked( $check_always, 1 ); ?>  />
-				<span><?php esc_attr_e( 'Always check for ie compatibility mode', $this->plugin_name ); ?></span>
+				<span><?php esc_attr_e( 'Always check for ie compatibility mode ', $this->plugin_name ); ?></span>
+				<i><?php esc_attr_e( '(even if it is a returning user and have disable the checker)', $this->plugin_name ); ?></i>
 			</label>
 		</fieldset>
 		
+		<br/>
+		
 		<fieldset>
-			<legend class="screen-reader-text"><span><?php _e('Make check only on front page', $this->plugin_name);?></span></legend>
-			<label for="<?php echo $this->plugin_name;?>-check_only_frontpage">
-				<input type="checkbox" id="<?php echo $this->plugin_name;?>-check_only_frontpage" 
-				name="<?php echo $this->plugin_name;?>[check_only_frontpage]" value="1" <?php checked( $check_only_frontpage, 1 ); ?>  />
-				<span><?php esc_attr_e( 'Make check only on front page', $this->plugin_name ); ?></span>
+			<legend class="screen-reader-text"><span><?php _e('Make check on', $this->plugin_name);?></span></legend>
+			<label for="<?php echo $this->plugin_name;?>-check_only_on">
+				<span><?php esc_attr_e( 'Make check on: ', $this->plugin_name ); ?></span>
+				<select name="<?php echo $this->plugin_name;?>[check_only_on]">
+					<option value="1" <?php selected( $check_only_on, 1 ); ?>>All</option>
+				    <option value="2" <?php selected( $check_only_on, 2 ); ?>>The Front Page</option>
+				    <option value="3" <?php selected( $check_only_on, 3 ); ?>>The Main Page</option>
+				    <option value="4" <?php selected( $check_only_on, 4 ); ?>>Any Search Result Page</option>
+				    <option value="5" <?php selected( $check_only_on, 5 ); ?>>Any Single Post Page</option>
+				    <option value="6" <?php selected( $check_only_on, 6 ); ?>>Any PAGE Page</option>
+				    <option value="7" <?php selected( $check_only_on, 7 ); ?>>Any Tag Page</option>
+				    <option value="8" <?php selected( $check_only_on, 8 ); ?>>Any Taxonomy Page</option>
+				    <option value="9" <?php selected( $check_only_on, 9 ); ?>>Any Archive Page</option>
+				</select>
 			</label>
 		</fieldset>
 		
@@ -54,14 +65,13 @@
 		
 		<fieldset> 
 			<legend class="screen-reader-text"><span><?php _e('Choose your prefered popup text', $this->plugin_name);?></span></legend>
-			<span><?php esc_attr_e( 'Choose your prefered popup text', $this->plugin_name ); ?></span><br/>
 			<label for="<?php echo $this->plugin_name;?>-popup_text">
+			<span><?php esc_attr_e( 'Choose your prefered popup text', $this->plugin_name ); ?></span><br/>
 				<input type="text" class="regular-text" id="<?php echo $this->plugin_name;?>-popup_text" 
 				name="<?php echo $this->plugin_name;?>[popup_text]" value="<?php if(!empty($popup_text)) echo $popup_text;?>"
 				placeholder="<?php esc_attr_e( 'Please turn of ie compatibility mode', $this->plugin_name ); ?>" />	                    
 			</label>
 		</fieldset>
-		
 		
 		<br/>
 		

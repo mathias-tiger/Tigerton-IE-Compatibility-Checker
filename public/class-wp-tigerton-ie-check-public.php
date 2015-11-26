@@ -87,51 +87,85 @@ class Wp_tigerton_ie_check_Public {
 
     public function wp_tigerton_ie_add_popup_code() {
 
-    	$c_always  =  get_option($this->plugin_name)['check_always'];
-    	$c_only_fp =  get_option($this->plugin_name)['check_only_frontpage'];
+    	$c_always  = get_option($this->plugin_name)['check_always'];
+    	$c_only_p  = get_option($this->plugin_name)['check_only_on'];
+    
+    	switch($c_only_p)
+    	{
+	    	case 1: $page = true;
+	    		break;
+	    	case 2:
+	    		$page = is_front_page();
+	    		break;
+	    	case 3:
+	    		$page = is_home();
+	    		break;
+	    	case 4:
+	    		$page = is_search();
+	    		break;
+	    	case 5:
+	    		$page = is_single();
+	    		break;
+	    	case 6:
+	    		$page = is_page();
+	    		break;
+    		case 7:
+    			$page = is_tag();
+				break;
+			case 8:
+	    		$page = is_tax();
+				break;
+    		case 9:
+	    		$page = is_archive();
+	    		break; 
+	    	default:
+	    		$page = false;
+    	}
     	
-    	// if Not frontpage and you want to check front page only = dont check
-    	if( $c_only_fp && !is_front_page() ){ return; }
+    	// if page is what you want to check
+    	if( $page ){
     	
-    	// if returning  and  check always is off 	= dont check
-    	if ( $_COOKIE['site_newvisitor'] === 'returning' && !$c_always ) { return; }
-
-    	// if never check  and  check always is off 	= dont check
-    	if ( $_COOKIE['site_newvisitor'] === 'check_never_again' && !$c_always ) { return; }
-    	
-	    // if Notset  or  is new  or  check always is on = do check
-	    if (  !isset($_COOKIE['site_newvisitor']) || $_COOKIE['site_newvisitor'] == 'new' || $c_always ) {
+	    	// if returning  and  check always is off 	= dont check
+	    	if ( $_COOKIE['site_newvisitor'] === 'returning' && !$c_always ) { return; }
+	
+	    	// if never check  and  check always is off 	= dont check
+	    	if ( $_COOKIE['site_newvisitor'] === 'check_never_again' && !$c_always ) { return; }
 	    	
-			$agentStr 	= $_SERVER['HTTP_USER_AGENT'];
-			$IsIE 		= false;
-			$IsOn 		= "";
-			$Version 	= "";
-			
-			if( strrpos( $agentStr, "MSIE 7.0") > -1 ) {
-				$IsIE = true;
-				$IsOn = true;
+		    // if notset  or  is new  or  check always is on = do check
+		    if (  !isset($_COOKIE['site_newvisitor']) || $_COOKIE['site_newvisitor'] == 'new' || $c_always ) {
+		    	
+				$agentStr 	= $_SERVER['HTTP_USER_AGENT'];
+				$IsIE 		= false;
+				$IsOn 		= "";
+				$Version 	= "";
 				
-				if( strrpos( $agentStr, "Trident/7.0") > -1 ) {
-					$Version = 'IE11';
-				} 
-				elseif( strrpos( $agentStr, "Trident/6.0") > -1 ) {
-					$Version = 'IE10';
-				} 
-				elseif( strrpos( $agentStr, "Trident/5.0") > -1 ) {
-					$Version = 'IE9';
-				} 
-				elseif( strrpos( $agentStr, "Trident/4.0") > -1 ) {
-					$Version = 'IE8';
-				} 
-				else {
-					$IsOn 	 = false; // compatability mimics 7, thus not on
-					$Version = 'IE7';
-				}
-			} //IE 7
-			
-		    if( $IsOn == false) {
-			    include_once( 'partials/wp-tigerton-ie-check-public-display.php' );
-		    }
+				if( strrpos( $agentStr, "MSIE 7.0") > -1 ) {
+					$IsIE = true;
+					$IsOn = true;
+					
+					if( strrpos( $agentStr, "Trident/7.0") > -1 ) {
+						$Version = 'IE11';
+					} 
+					elseif( strrpos( $agentStr, "Trident/6.0") > -1 ) {
+						$Version = 'IE10';
+					} 
+					elseif( strrpos( $agentStr, "Trident/5.0") > -1 ) {
+						$Version = 'IE9';
+					} 
+					elseif( strrpos( $agentStr, "Trident/4.0") > -1 ) {
+						$Version = 'IE8';
+					} 
+					else {
+						$IsOn 	 = false; // compatability mimics 7, thus not on
+						$Version = 'IE7';
+					}
+				} //IE 7
+				
+				//Only using false here to force popup when debugging
+			    if( $IsOn == false) {
+				    include_once( 'partials/wp-tigerton-ie-check-public-display.php' );
+			    }
+			}
 		}
     }
 	
