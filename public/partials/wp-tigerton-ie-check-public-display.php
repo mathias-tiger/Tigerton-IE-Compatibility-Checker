@@ -12,21 +12,21 @@
 	<div id="tigerton-ie-checker-popup-inner">
 		<?php 
 			if( !empty($popup_text) ) {
-				echo esc_attr_e( $popup_text, $this->plugin_name ); 
+				echo '<h1>' . esc_attr__( $popup_text, $this->plugin_name ) . '</h1>'; 
 			}
 			else { 
-				echo _e('Please turn of IE compatibility mode', $this->plugin_name); 
+				echo '<h1>' . __('Please turn of ie compatibility mode', $this->plugin_name) . '</h1>'; 
 			}
 		?>
 		<div id="tigerton-ie-checker-buttons">
 			<?php if( $dontCheck ): ?>
 				<button id="tigerton-ie-checker-dismiss-button">
-					<?php echo _e('Dont show this message again', $this->plugin_name); ?>
+					<?php _e('Dont show this message again', $this->plugin_name); ?>
 				</button>
 			<?php endif ?>
 			
 			<button id="tigerton-ie-checker-close-button">
-				<?php echo _e('Close', $this->plugin_name); ?> 
+				<?php _e('Close', $this->plugin_name); ?> 
 			</button>
 		</div>
 	</div>

@@ -39,8 +39,10 @@ class Wp_tigerton_ie_check_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-tigerton-ie-check-public.css', array(), $this->version, 'all' );
+		 
+		if( !get_option($this->plugin_name)['css_off'] ){
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-tigerton-ie-check-public.css', array(), $this->version, 'all' );
+		}	
 	}
 
 	/**
@@ -56,8 +58,8 @@ class Wp_tigerton_ie_check_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-tigerton-ie-check-public.js', array( 'jquery' ), $this->version, true );
+		 
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-tigerton-ie-check-public.js', array( 'jquery' ), $this->version, true );	
 	}
     
     public function wp_tigerton_ie_cookie() {
@@ -127,7 +129,7 @@ class Wp_tigerton_ie_check_Public {
 				}
 			} //IE 7
 			
-		    if( $IsOn ) {
+		    if( $IsOn == false) {
 			    include_once( 'partials/wp-tigerton-ie-check-public-display.php' );
 		    }
 		}
