@@ -9,34 +9,25 @@
 	 * for any particular page. Though other scripts in WordPress core, other plugins, and other themes may
 	 * be doing this, we should try to minimize doing that in our own work.
 	 */
-	
-	
+
 	/**
 	 * Remove the popup html on click
 	 */
 	$('#tigerton-ie-checker-close-button').click(function() {	  
 		$('#tigerton-ie-checker-popup-bg').remove();
 	});	
-
-
+	
 	/**
-	 * Remove the popup html on click and.. work in progress
+	 * Remove the popup html on click and set/update cookie
 	 */
 	$('#tigerton-ie-checker-dismiss-button').click(function() {	  
 		$('#tigerton-ie-checker-popup-bg').remove();
-
-
-		var data = {
-		'action': 'wp_tigerton_ie_action_callback',
-		'whatever': ajax_object.we_value      // We pass php values differently!
-		};
-
-		// We can also pass the url value separately from ajaxurl for front end AJAX implementations
-		jQuery.post(ajax_object.ajax_url, data, function(response) {
-			alert('Got this from the server: ' + response);
-		});
-
-
+		
+		//Set cookie
+		var d = new Date();
+	    d.setTime( d.getTime() + (3600 * 24 * 100) );
+	    var expires = 'expires=' + d.toUTCString();
+	    document.cookie = 'site_newvisitor' + '=' + 'check_never_again' + '; ' + expires;
 	});	
 	
 })( jQuery );

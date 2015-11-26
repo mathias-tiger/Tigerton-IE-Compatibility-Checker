@@ -42,8 +42,8 @@ class Wp_tigerton_ie_check {
 	 */
 	public function __construct() {
 
-		$this->plugin_name = 'wp-tigerton-ie-check';
-		$this->version = '1.0.0';
+		$this->plugin_name 	= 'wp-tigerton-ie-check';
+		$this->version 		= '1.0.0';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -140,8 +140,6 @@ class Wp_tigerton_ie_check {
 
         $this->loader->add_action( 'init', $plugin_public,'wp_tigerton_ie_cookie');
         $this->loader->add_action( 'wp_footer', $plugin_public, 'wp_tigerton_ie_add_popup_code' );
-
-    	$this->loader->add_action( 'wp_ajax_nopriv_my_action', $plugin_public, 'wp_tigerton_ie_action_callback' );
     }
 
 	/**

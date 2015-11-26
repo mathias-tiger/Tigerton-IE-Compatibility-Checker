@@ -39,11 +39,6 @@
 			</label>
 		</fieldset>
 		
-<!--	
-// - visa alltid eller bara en gång 
-// klicka bort så att den aldrig mer syns
-// visa enbart på startsidan 
--->
 		<br/>
 		
 		<fieldset> 

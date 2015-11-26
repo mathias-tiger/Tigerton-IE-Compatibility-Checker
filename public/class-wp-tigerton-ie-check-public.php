@@ -63,9 +63,6 @@ class Wp_tigerton_ie_check_Public {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-tigerton-ie-check-public.js', array( 'jquery' ), $this->version, true );
-
-		// in JavaScript, object properties are accessed as ajax_object.ajax_url, ajax_object.we_value
-		wp_localize_script(  $this->plugin_name, 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'we_value' => 1234 ) );
 	}
     
     public function wp_tigerton_ie_cookie() {
@@ -96,14 +93,14 @@ class Wp_tigerton_ie_check_Public {
     	$c_always =  get_option($this->plugin_name)['check_always'];
     	
     	// if returning  and  check always is off 	= dont check
-    	if ( $_COOKIE['site_newvisitor'] === 'returning' && !$c_always ) { echo "debug 1"; return; }
+    	if ( $_COOKIE['site_newvisitor'] === 'returning' && !$c_always ) { return; }
 
     	// if never check  and  check always is off 	= dont check
-    	if ( $_COOKIE['site_newvisitor'] === 'check_never_again' && !$c_always ) { echo "debug 2"; return; }
+    	if ( $_COOKIE['site_newvisitor'] === 'check_never_again' && !$c_always ) { return; }
     	
 	    // if Notset  or  is new  or  check always is on = do check
 	    if (  !isset($_COOKIE['site_newvisitor']) || $_COOKIE['site_newvisitor'] == 'new' || $c_always ) {
-	    	echo "debug 3";
+	    	
 			$agentStr 	= $_SERVER['HTTP_USER_AGENT'];
 			$IsIE 		= false;
 			$IsOn 		= "";
@@ -131,38 +128,12 @@ class Wp_tigerton_ie_check_Public {
 				}
 			} //IE 7
 			
+			// CHANGE TO TRUE, only false for debug.
 		    if( $IsOn == false ) {
-		    	echo "debug 4";
 			    include_once( 'partials/wp-tigerton-ie-check-public-display.php' );
 		    }
 		}
     }
-
-
-
-
-
-    // make function that is called from partials/wp-tigerton-ie-check-public-display.php
-    //  if button in frontend is clicked, set coockie? 
-    //  or set an option variable that is stored like the backend options?
-  	/*
-     elseif( $check_never_again )
-    {
-	    $cookie_value = "check_never_again";
-        setcookie( 'site_newvisitor', $cookie_value, $cookie_time, COOKIEPATH, COOKIE_DOMAIN);
-    }
-	*/
-
-	public function wp_tigerton_ie_action_callback() {
-		global $wpdb; // this is how you get access to the database
-		
-		$whatever = intval( $_POST['whatever'] );
-		$whatever += 10;
-
-	        echo $whatever;
-
-		wp_die(); // this is required to terminate immediately and return a proper response
-	}
-
+	
 
 }
