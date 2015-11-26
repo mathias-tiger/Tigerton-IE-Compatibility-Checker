@@ -13,9 +13,10 @@
 		<?php
 			$options = get_option($this->plugin_name);
 	
-			$check_always 		= $options['check_always'];		
-			$check_never_again 	= $options['check_never_again'];		
-			$popup_text  		= $options['popup_text'];
+			$check_always 		  = $options['check_always'];		
+			$check_never_again 	  = $options['check_never_again'];		
+			$popup_text  		  = $options['popup_text'];
+			$check_only_frontpage = $options['check_only_frontpage'];
 		
 			settings_fields( $this->plugin_name );
 			do_settings_sections( $this->plugin_name );
@@ -36,6 +37,15 @@
 				<input type="checkbox" id="<?php echo $this->plugin_name;?>-check_always" 
 				name="<?php echo $this->plugin_name;?>[check_always]" value="1" <?php checked( $check_always, 1 ); ?>  />
 				<span><?php esc_attr_e( 'Always Check IE Compatibility mode', $this->plugin_name ); ?></span>
+			</label>
+		</fieldset>
+		
+		<fieldset>
+			<legend class="screen-reader-text"><span><?php _e('Check only on frontpage', $this->plugin_name);?></span></legend>
+			<label for="<?php echo $this->plugin_name;?>-check_only_frontpage">
+				<input type="checkbox" id="<?php echo $this->plugin_name;?>-check_only_frontpage" 
+				name="<?php echo $this->plugin_name;?>[check_only_frontpage]" value="1" <?php checked( $check_only_frontpage, 1 ); ?>  />
+				<span><?php esc_attr_e( 'Check only on frontpage', $this->plugin_name ); ?></span>
 			</label>
 		</fieldset>
 		

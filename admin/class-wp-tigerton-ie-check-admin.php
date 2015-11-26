@@ -113,10 +113,11 @@ class Wp_tigerton_ie_check_Admin {
 		$valid = array();
 
 		// validation/sanitize
-		$valid['check_always'] 		= (isset($input['check_always']) && !empty($input['check_always'])) ? 1 : 0;
-		$valid['check_never_again'] = (isset($input['check_never_again']) && !empty($input['check_never_again'])) ? 1 : 0;
-		$valid['popup_text'] 		= sanitize_text_field($input['popup_text']);
-
+		$valid['check_always'] 			= (isset($input['check_always']) && !empty($input['check_always'])) ? 1 : 0;
+		$valid['check_never_again'] 	= (isset($input['check_never_again']) && !empty($input['check_never_again'])) ? 1 : 0;
+		$valid['check_only_frontpage'] 	= (isset($input['check_only_frontpage']) && !empty($input['check_only_frontpage'])) ? 1 : 0;
+		$valid['popup_text'] 			= sanitize_text_field($input['popup_text']);
+		
 		return $valid;
 	}
 }

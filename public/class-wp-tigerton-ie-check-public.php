@@ -4,8 +4,6 @@
  *
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
- * 
- * @author     Guillaume Kanoufi <g.kanoufi@gmail.com>
  */
 class Wp_tigerton_ie_check_Public {
 	/**
@@ -28,13 +26,11 @@ class Wp_tigerton_ie_check_Public {
         $this->wp_tigerton_ie_check_options = get_option($this->plugin_name);
     }
 
-
 	/**
 	 * Register the stylesheets for the public-facing side of the site.
 	 */
 	public function enqueue_styles() {
 		/**
-		 *
 		 * An instance of this class should be passed to the run() function
 		 * defined in Loader as all of the hooks are defined
 		 * in that particular class.
@@ -52,7 +48,6 @@ class Wp_tigerton_ie_check_Public {
 	 */
 	public function enqueue_scripts() {
 		/**
-		 *
 		 * An instance of this class should be passed to the run() function
 		 * defined in Loader as all of the hooks are defined
 		 * in that particular class.
@@ -90,7 +85,11 @@ class Wp_tigerton_ie_check_Public {
 
     public function wp_tigerton_ie_add_popup_code() {
 
-    	$c_always =  get_option($this->plugin_name)['check_always'];
+    	$c_always  =  get_option($this->plugin_name)['check_always'];
+    	$c_only_fp =  get_option($this->plugin_name)['check_only_frontpage'];
+    	
+    	// if Not frontpage and you want to check front page only = dont check
+    	if( $c_only_fp && !is_front_page() ){ return; }
     	
     	// if returning  and  check always is off 	= dont check
     	if ( $_COOKIE['site_newvisitor'] === 'returning' && !$c_always ) { return; }
@@ -128,8 +127,7 @@ class Wp_tigerton_ie_check_Public {
 				}
 			} //IE 7
 			
-			// CHANGE TO TRUE, only false for debug.
-		    if( $IsOn == false ) {
+		    if( $IsOn ) {
 			    include_once( 'partials/wp-tigerton-ie-check-public-display.php' );
 		    }
 		}
