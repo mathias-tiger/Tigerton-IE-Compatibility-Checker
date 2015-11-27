@@ -8,17 +8,13 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://lostwebdesigns.com
- * @since             1.0.0
- * @package           Wp_tigerton-ie-check
- *
  * @wordpress-plugin
  * Plugin Name:       Tigerton IE Check
- * Plugin URI:        http://www.tigerton.se
- * Description:       
+ * Plugin URI:        https://www.tigerton.se
+ * Description:       WordPress plugin that tell users to turn of IE compatibility mode if enabled.
  * Version:           1.0.0
  * Author:            Mathias Karlsson
- * Author URI:        http://www.tigerton.se
+ * Author URI:        http://www.mathiascarlsson.se
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       wp-tigerton-ie-check

@@ -11,7 +11,7 @@ Prompt users to turn off IE compatibility mode if enabled.
 
 == Description ==
 
-WordPress plugin that prompt users to turn of IE compatibility mode if enabled.
+WordPress plugin that tell users to turn of IE compatibility mode if enabled.
 
 *    Check if IE compatibility mode is enabled.
 *    Write a custom popup text.
