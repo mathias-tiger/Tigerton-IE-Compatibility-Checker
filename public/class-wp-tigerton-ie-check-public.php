@@ -59,16 +59,20 @@ class Wp_tigerton_ie_check_Public {
 		    $cookie_value = "check_always";
 	        setcookie( 'site_newvisitor', $cookie_value, $cookie_time, COOKIEPATH, COOKIE_DOMAIN);
 	    }
+	    
 	    elseif( !isset($_COOKIE['site_newvisitor']) )
 	    {
 		    $cookie_value = "new";
 	        setcookie( 'site_newvisitor', $cookie_value, $cookie_time, COOKIEPATH, COOKIE_DOMAIN);
 	    }
-	    else
+	    /*
+		else
 	    {
 		    $cookie_value = "returning";
 	        setcookie( 'site_newvisitor', $cookie_value, $cookie_time, COOKIEPATH, COOKIE_DOMAIN);
 	    }
+	    */
+	    
 	}
 	
 	/**
@@ -115,7 +119,7 @@ class Wp_tigerton_ie_check_Public {
     	if( $page ){
     	
 	    	// if returning  and  check always is off = dont check
-	    	if ( $_COOKIE['site_newvisitor'] === 'returning' && !$c_always ) { return; }
+	    	//if ( $_COOKIE['site_newvisitor'] === 'returning' && !$c_always ) { return; }
 	
 	    	// if never check  and  check always is off = dont check
 	    	if ( $_COOKIE['site_newvisitor'] === 'check_never_again' && !$c_always ) { return; }
