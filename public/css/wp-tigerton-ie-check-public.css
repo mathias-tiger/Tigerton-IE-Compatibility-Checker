@@ -1,11 +1,10 @@
 /**
- * All of the CSS for public-facing functionality should be
- * included in this file.
+ * All of the CSS for frontend.
  */
  
  /**
- * PopUp styles
- */
+  * PopUp styles
+  */
  #tigerton-ie-checker-popup-bg{
 	position: fixed;
 	top: 		0;
@@ -47,7 +46,8 @@
 	width: 100%;
  }
  
- #tigerton-ie-checker-close-button, #tigerton-ie-checker-dismiss-button{
+ #tigerton-ie-checker-close-button, 
+ #tigerton-ie-checker-dismiss-button{
 	position: relative;
 	margin: 10px 0px 10px 0px;
 	color: #fff;
@@ -64,7 +64,8 @@
 	text-decoration: none;
  } 
  
- #tigerton-ie-checker-close-button:hover, #tigerton-ie-checker-dismiss-button:hover{
+ #tigerton-ie-checker-close-button:hover, 
+ #tigerton-ie-checker-dismiss-button:hover{
 	background-color: rgb(46, 157, 255); 
  }
  

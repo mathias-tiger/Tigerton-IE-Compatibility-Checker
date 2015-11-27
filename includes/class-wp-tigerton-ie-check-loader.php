@@ -8,14 +8,10 @@
  */
 class Wp_tigerton_ie_check_Loader {
 
-	/**
-	 * The array of actions registered with WordPress.
-	 */
+	// The array of actions registered with WordPress.
 	protected $actions;
 
-	/**
-	 * The array of filters registered with WordPress.
-	 */
+	// The array of filters registered with WordPress.
 	protected $filters;
 
 	/**

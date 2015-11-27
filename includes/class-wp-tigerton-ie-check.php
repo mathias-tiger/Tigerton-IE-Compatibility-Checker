@@ -17,20 +17,13 @@
  */
 class Wp_tigerton_ie_check {
 
-	/**
-	 * The loader that's responsible for maintaining and registering all hooks that power
-	 * the plugin.
-	 */
+	// The loader that's responsible for maintaining and registering all hooks that power the plugin.
 	protected $loader;
 
-	/**
-	 * The unique identifier of this plugin.
-	 */
+	// The unique identifier of this plugin.
 	protected $plugin_name;
 
-	/**
-	 * The current version of the plugin.
-	 */
+	// The current version of the plugin.
 	protected $version;
 
 	/**
@@ -66,27 +59,16 @@ class Wp_tigerton_ie_check {
 	 */
 	private function load_dependencies() {
 
-		/**
-		 * The class responsible for orchestrating the actions and filters of the
-		 * core plugin.
-		 */
+		// The class responsible for orchestrating the actions and filters of the core plugin.
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-tigerton-ie-check-loader.php';
 
-		/**
-		 * The class responsible for defining internationalization functionality
-		 * of the plugin.
-		 */
+		// The class responsible for defining internationalization functionality of the plugin.
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-tigerton-ie-check-i18n.php';
 
-		/**
-		 * The class responsible for defining all actions that occur in the admin area.
-		 */
+		//The class responsible for defining all actions that occur in the admin area.
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wp-tigerton-ie-check-admin.php';
 
-		/**
-		 * The class responsible for defining all actions that occur in the public-facing
-		 * side of the site.
-		 */
+		// The class responsible for defining all actions that occur in the public-facing side of the site.
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wp-tigerton-ie-check-public.php';
 
 		$this->loader = new Wp_tigerton_ie_check_Loader();
@@ -107,13 +89,12 @@ class Wp_tigerton_ie_check {
 	}
 
 	/**
-	 * Register all of the hooks related to the admin area functionality
-	 * of the plugin.
+	 * Register all of the hooks related to the admin area functionality of the plugin.
 	 */
 	private function define_admin_hooks() {
-
 		$plugin_admin = new Wp_tigerton_ie_check_Admin( $this->get_plugin_name(), $this->get_version() );
-
+		
+		// Load script and styles for the admin area
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
@@ -129,15 +110,16 @@ class Wp_tigerton_ie_check {
 	}
 
     /**
-     * Register all of the hooks related to the public-facing functionality
-     * of the plugin.
+     * Register all of the hooks related to the public-facing functionality of the plugin.
      */
     private function define_public_hooks() {
         $plugin_public = new Wp_tigerton_ie_check_Public( $this->get_plugin_name(), $this->get_version() );
         
+        // Load script and styles for the frontend area
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
+		
+		// Set coockie and add popup
         $this->loader->add_action( 'init', $plugin_public,'wp_tigerton_ie_cookie');
         $this->loader->add_action( 'wp_footer', $plugin_public, 'wp_tigerton_ie_add_popup_code' );
     }

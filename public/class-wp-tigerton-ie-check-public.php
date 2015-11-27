@@ -2,18 +2,17 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the admin-specific stylesheet and JavaScript.
+ * Defines the plugin name, version, and two hooks for
+ * enqueue the frontend-specific stylesheet and JavaScript.
+ *
+ * Also the functions for setting and updating cookies,
+ * checking for IE mode and show the popup.
  */
 class Wp_tigerton_ie_check_Public {
-	/**
-	 * The ID of this plugin.
-	 */
+	// The ID of this plugin.
 	private $plugin_name;
 
-	/**
-	 * The version of this plugin.
-	 */
+	// The version of this plugin.
 	private $version;
 
 	/**
@@ -30,16 +29,8 @@ class Wp_tigerton_ie_check_Public {
 	 * Register the stylesheets for the public-facing side of the site.
 	 */
 	public function enqueue_styles() {
-		/**
-		 * An instance of this class should be passed to the run() function
-		 * defined in Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
 		 
+		// If the option to turn off this plugin css is not checked, load css. 
 		if( !get_option($this->plugin_name)['css_off'] ){
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-tigerton-ie-check-public.css', array(), $this->version, 'all' );
 		}	
@@ -49,19 +40,14 @@ class Wp_tigerton_ie_check_Public {
 	 * Register the stylesheets for the public-facing side of the site.
 	 */
 	public function enqueue_scripts() {
-		/**
-		 * An instance of this class should be passed to the run() function
-		 * defined in Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-		 
+				 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-tigerton-ie-check-public.js', array( 'jquery' ), $this->version, true );	
 	}
-    
+	
+	
+    /**
+	 * Check the options and set cookie accordingly
+	 */
     public function wp_tigerton_ie_cookie() {
 	    $options 			= get_option($this->plugin_name);
 		$check_always 		= $options['check_always'];
@@ -84,7 +70,10 @@ class Wp_tigerton_ie_check_Public {
 	        setcookie( 'site_newvisitor', $cookie_value, $cookie_time, COOKIEPATH, COOKIE_DOMAIN);
 	    }
 	}
-
+	
+	/**
+	 * check options, cookie, and if IE mode, chooses to display popup or not.
+	 */
     public function wp_tigerton_ie_add_popup_code() {
 
     	$c_always  = get_option($this->plugin_name)['check_always'];
@@ -122,13 +111,13 @@ class Wp_tigerton_ie_check_Public {
 	    		$page = false;
     	}
     	
-    	// if page is what you want to check
+    	// if the page is the page you want to check
     	if( $page ){
     	
-	    	// if returning  and  check always is off 	= dont check
+	    	// if returning  and  check always is off = dont check
 	    	if ( $_COOKIE['site_newvisitor'] === 'returning' && !$c_always ) { return; }
 	
-	    	// if never check  and  check always is off 	= dont check
+	    	// if never check  and  check always is off = dont check
 	    	if ( $_COOKIE['site_newvisitor'] === 'check_never_again' && !$c_always ) { return; }
 	    	
 		    // if notset  or  is new  or  check always is on = do check
@@ -160,14 +149,12 @@ class Wp_tigerton_ie_check_Public {
 						$Version = 'IE7';
 					}
 				} //IE 7
-				
-				//Only using false here to force popup when debugging
-			    if( $IsOn == false) {
+			
+			    if( $IsOn ) {
 				    include_once( 'partials/wp-tigerton-ie-check-public-display.php' );
 			    }
 			}
 		}
     }
 	
-
 }

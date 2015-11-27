@@ -1,6 +1,6 @@
 <?php
 /**
- * Provide a public-facing view for the plugin
+ * The popup box that are displayed in the frontend.
  */
 	$options 	= get_option($this->plugin_name);
 	$popup_text = $options['popup_text'];
