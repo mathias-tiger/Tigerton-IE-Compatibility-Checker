@@ -37,7 +37,7 @@ class Wp_tigerton_ie_check_Admin {
 	public function enqueue_scripts() {
 		
 		//This function is provided for demonstration purposes only.
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-tigerton-ie-check-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-tigerton-ie-check-admin.js', array( 'jquery' ), $this->version, true );
 	}
 
 	/**
@@ -92,6 +92,7 @@ class Wp_tigerton_ie_check_Admin {
 		$valid['check_always'] 			= ( isset($input['check_always']) && !empty($input['check_always']) ) ? 1 : 0;
 		$valid['check_never_again'] 	= ( isset($input['check_never_again']) && !empty($input['check_never_again']) ) ? 1 : 0;
 		$valid['css_off'] 				= ( isset($input['css_off']) && !empty($input['css_off']) ) ? 1 : 0;
+		$valid['debug'] 				= ( isset($input['debug']) && !empty($input['debug']) ) ? 1 : 0;
 		$valid['check_only_on'] 		= intval( $input['check_only_on'] );
 		$valid['popup_title'] 			= sanitize_text_field($input['popup_title']);
 		$valid['popup_text'] 			= sanitize_text_field($input['popup_text']);

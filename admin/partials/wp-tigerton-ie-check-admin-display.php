@@ -17,6 +17,7 @@
 			$popup_text  		  = $options['popup_text'];
 			$css_off 			  = $options['css_off'];
 			$check_only_on		  = $options['check_only_on'];
+			$debug				  = $options['debug'];
 		
 			settings_fields( $this->plugin_name );
 			do_settings_sections( $this->plugin_name );
@@ -48,7 +49,7 @@
 			<label for="<?php echo $this->plugin_name;?>-check_only_on">
 				<span><?php esc_attr_e( 'Make check on: ', $this->plugin_name ); ?></span>
 				<select name="<?php echo $this->plugin_name;?>[check_only_on]">
-					<option value="1" <?php selected( $check_only_on, 1 ); ?>>All</option>
+					<option value="1" <?php selected( $check_only_on, 1 ); ?>>All Pages</option>
 				    <option value="2" <?php selected( $check_only_on, 2 ); ?>>The Front Page</option>
 				    <option value="3" <?php selected( $check_only_on, 3 ); ?>>The Main Page</option>
 				    <option value="4" <?php selected( $check_only_on, 4 ); ?>>Any Search Result Page</option>
@@ -95,6 +96,19 @@
 				<i><?php esc_attr_e( '(you need to create your own styles for the popup)', $this->plugin_name ); ?></i>
 			</label>
 		</fieldset>
+		
+		<br/>
+		
+		<fieldset>
+			<legend class="screen-reader-text"><span><?php _e('Debug this plugin', $this->plugin_name);?></span></legend>
+			<label for="<?php echo $this->plugin_name;?>-debug">
+				<input type="checkbox" id="<?php echo $this->plugin_name;?>-debug" 
+				name="<?php echo $this->plugin_name;?>[debug]" value="1" <?php checked( $debug, 1 ); ?>  />
+				<span><?php esc_attr_e( 'Debug this plugin', $this->plugin_name ); ?></span>
+				<i><?php esc_attr_e( '(makes the check popup on all browsers in any mode)', $this->plugin_name ); ?></i>
+			</label>
+		</fieldset>
+
 		
 		<?php submit_button(__('Save all changes', $this->plugin_name), 'primary','submit', TRUE); ?>
     </form>

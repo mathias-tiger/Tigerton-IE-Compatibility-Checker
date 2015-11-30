@@ -49,42 +49,22 @@ class Wp_tigerton_ie_check_Public {
 	 * Check the options and set cookie accordingly
 	 */
     public function wp_tigerton_ie_cookie() {
-	    $options 			= get_option($this->plugin_name);
-		$check_always 		= $options['check_always'];
 
-		$cookie_time 		= time()+3600*24*100;
+		$cookie_time = time() + 86400 * 14; // 86400 = 1 day 
 	    
-	    if ( $check_always )  
-	    {
-		    $cookie_value = "check_always";
-	        setcookie( 'site_newvisitor', $cookie_value, $cookie_time, COOKIEPATH, COOKIE_DOMAIN);
-	    }
-	    
-	    elseif( !isset($_COOKIE['site_newvisitor']) )
-	    {
+	    if( !isset($_COOKIE['site_visitor']) ) {
 		    $cookie_value = "new";
-	        setcookie( 'site_newvisitor', $cookie_value, $cookie_time, COOKIEPATH, COOKIE_DOMAIN);
+		    setcookie( 'site_visitor', $cookie_value, $cookie_time, '/', COOKIE_DOMAIN);
 	    }
-	    /*
-		else
-	    {
-		    $cookie_value = "returning";
-	        setcookie( 'site_newvisitor', $cookie_value, $cookie_time, COOKIEPATH, COOKIE_DOMAIN);
-	    }
-	    */
-	    
 	}
 	
-	/**
-	 * check options, cookie, and if IE mode, chooses to display popup or not.
+	 /*
+	 * Returns true or false based on what page you are on.    
 	 */
-    public function wp_tigerton_ie_add_popup_code() {
-
-    	$c_always  = get_option($this->plugin_name)['check_always'];
-    	$c_only_p  = get_option($this->plugin_name)['check_only_on'];
+    public function wp_tigerton_ie_checkPage() {
+	  $check_only_on  = get_option($this->plugin_name)['check_only_on'];
     
-    	switch($c_only_p)
-    	{
+    	switch($check_only_on) {
 	    	case 1: $page = true;
 	    		break;
 	    	case 2:
@@ -114,18 +94,27 @@ class Wp_tigerton_ie_check_Public {
 	    	default:
 	    		$page = false;
     	}
-    	
-    	// if the page is the page you want to check
-    	if( $page ){
-    	
-	    	// if returning  and  check always is off = dont check
-	    	//if ( $_COOKIE['site_newvisitor'] === 'returning' && !$c_always ) { return; }
+    	return $page;
+	}
 	
-	    	// if never check  and  check always is off = dont check
-	    	if ( $_COOKIE['site_newvisitor'] === 'check_never_again' && !$c_always ) { return; }
+	/**
+	 * check options, cookie, and if IE mode, chooses to display popup or not.
+	 */
+    public function wp_tigerton_ie_add_popup_code() {
+	    $options   = get_option($this->plugin_name);
+    	 
+    	$page = $this->wp_tigerton_ie_checkPage();
+    	 
+    	// If the page is the page you want to check
+    	if( $page ){
+
+    		if( $options['debug'] ) {
+				include_once( 'partials/wp-tigerton-ie-check-public-display.php' );
+				return;
+			}
 	    	
-		    // if notset  or  is new  or  check always is on = do check
-		    if (  !isset($_COOKIE['site_newvisitor']) || $_COOKIE['site_newvisitor'] == 'new' || $c_always ) {
+		    // if notset OR is new OR check always is on.
+		    if (  !isset($_COOKIE['site_visitor']) || $_COOKIE['site_visitor'] == 'new' || $options['check_always'] ) {
 		    	
 				$agentStr 	= $_SERVER['HTTP_USER_AGENT'];
 				$IsIE 		= false;
@@ -153,12 +142,13 @@ class Wp_tigerton_ie_check_Public {
 						$Version = 'IE7';
 					}
 				} //IE 7
-			
-			    if( $IsOn ) {
+				
+				// If the IE compatibility mode is on 
+				if( $IsOn ) {
 				    include_once( 'partials/wp-tigerton-ie-check-public-display.php' );
 			    }
 			}
 		}
     }
-	
+
 }

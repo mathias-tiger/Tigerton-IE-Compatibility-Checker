@@ -15,9 +15,9 @@
 		
 		//Set cookie
 		var d = new Date();
-	    d.setTime( d.getTime() + (3600 * 24 * 100) );
+	    d.setTime( d.getTime() + (14 * 24 * 3600 * 1000) );
 	    var expires = 'expires=' + d.toUTCString();
-	    document.cookie = 'site_newvisitor' + '=' + 'check_never_again' + '; ' + expires;
+	    document.cookie = 'site_visitor' + '=' + 'dont_check' + '; ' + expires +'; path=/';
 	});	
 	
 })( jQuery );

@@ -2,9 +2,10 @@
 /**
  * The popup box that are displayed in the frontend.
  */
-	$options 	= get_option($this->plugin_name);
-	$popup_text = $options['popup_text'];
-	$dontCheck  = $options['check_never_again'];
+	$options 	 = get_option($this->plugin_name);
+	$popup_text  = $options['popup_text'];
+	$popup_title = $options['popup_title'];
+	$dontCheck   = $options['check_never_again'];
 ?>
 
 <div id="tigerton-ie-checker-popup-bg">
@@ -23,8 +24,7 @@
 			else { 
 				echo '<p>' . 
 				__('Compatibility mode in IE is a feature that helps you view webpages that were designed for previous versions of the browser, 
-				however having it enabled can break newer sites that were designed for modern browsers.', $this->plugin_name)
-				 . '</p>'; 
+				however having it enabled can break newer sites that were designed for modern browsers.', $this->plugin_name) . '</p>'; 
 			}
 		?>
 		<div id="tigerton-ie-checker-buttons">
