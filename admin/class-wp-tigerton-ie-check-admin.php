@@ -1,9 +1,7 @@
 <?php
 /**
  * The admin-specific functionality of the plugin.
- *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the admin-specific stylesheet and JavaScript.
+ * Defines the plugin name, version, and functions
  */
 class Wp_tigerton_ie_check_Admin {
 

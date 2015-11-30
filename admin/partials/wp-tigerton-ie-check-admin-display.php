@@ -3,7 +3,7 @@
  * This file is used to markup the admin-facing aspects of the plugin.
  */
 ?>
-<div class="wrap">
+<div class="wrap" id="<?php echo $this->plugin_name;?>-wrapper">
 
 	<h2 class="nav-tab-wrapper"><?php echo esc_html( get_admin_page_title() ); ?></h2>
 	<br/>
@@ -28,7 +28,8 @@
 			<label for="<?php echo $this->plugin_name;?>-check_never_again">
 				<input type="checkbox" id="<?php echo $this->plugin_name;?>-check_never_again" 
 				name="<?php echo $this->plugin_name;?>[check_never_again]" value="1" <?php checked( $check_never_again, 1 ); ?>  />
-				<span><?php esc_attr_e( 'Allow users to disable the checker', $this->plugin_name ); ?></span>
+				<span><?php esc_attr_e( 'Allow visitors to disable the checker ', $this->plugin_name ); ?></span>
+				<i><?php esc_attr_e( '(if not checked the visitors will see the popup every time they visit the site)', $this->plugin_name ); ?></i>
 			</label>
 		</fieldset>
 
@@ -38,7 +39,7 @@
 				<input type="checkbox" id="<?php echo $this->plugin_name;?>-check_always" 
 				name="<?php echo $this->plugin_name;?>[check_always]" value="1" <?php checked( $check_always, 1 ); ?>  />
 				<span><?php esc_attr_e( 'Always check for ie compatibility mode ', $this->plugin_name ); ?></span>
-				<i><?php esc_attr_e( '(even if it is a returning user and have the checker disabled)', $this->plugin_name ); ?></i>
+				<i><?php esc_attr_e( '(even if it is a returning visitor and have the checker disabled)', $this->plugin_name ); ?></i>
 			</label>
 		</fieldset>
 		
@@ -47,7 +48,7 @@
 		<fieldset>
 			<legend class="screen-reader-text"><span><?php _e('Make check on', $this->plugin_name);?></span></legend>
 			<label for="<?php echo $this->plugin_name;?>-check_only_on">
-				<span><?php esc_attr_e( 'Make check on: ', $this->plugin_name ); ?></span>
+				<span><?php esc_attr_e( 'Check on: ', $this->plugin_name ); ?></span>
 				<select name="<?php echo $this->plugin_name;?>[check_only_on]">
 					<option value="1" <?php selected( $check_only_on, 1 ); ?>>All Pages</option>
 				    <option value="2" <?php selected( $check_only_on, 2 ); ?>>The Front Page</option>
@@ -59,6 +60,7 @@
 				    <option value="8" <?php selected( $check_only_on, 8 ); ?>>Any Taxonomy Page</option>
 				    <option value="9" <?php selected( $check_only_on, 9 ); ?>>Any Archive Page</option>
 				</select>
+				<i><?php esc_attr_e( ' (the page types you want the check to be enabled on)', $this->plugin_name ); ?></i>
 			</label>
 		</fieldset>
 		
@@ -67,17 +69,19 @@
 		<fieldset> 
 			<legend class="screen-reader-text"><span><?php _e('Choose your preferred popup title', $this->plugin_name);?></span></legend>
 			<label for="<?php echo $this->plugin_name;?>-popup_title">
-			<span><?php esc_attr_e( 'Choose your preferred popup title', $this->plugin_name ); ?></span><br/>
+			<span><?php esc_attr_e( 'Choose your preferred popup title:', $this->plugin_name ); ?></span><br/>
 				<input type="text" class="regular-text" id="<?php echo $this->plugin_name;?>-popup_title" 
 				name="<?php echo $this->plugin_name;?>[popup_title]" value="<?php if(!empty($popup_title)) echo $popup_title;?>"
 				placeholder="<?php esc_attr_e( 'Please turn of ie compatibility mode', $this->plugin_name ); ?>" />	                    
 			</label>
 		</fieldset>
+
+		<br/>
 		
 		<fieldset> 
 			<legend class="screen-reader-text"><span><?php _e('Choose your preferred popup text', $this->plugin_name);?></span></legend>
 			<label for="<?php echo $this->plugin_name;?>-popup_text">
-			<span><?php esc_attr_e( 'Choose your preferred popup text', $this->plugin_name ); ?></span><br/>
+			<span><?php esc_attr_e( 'Choose your preferred popup text:', $this->plugin_name ); ?></span><br/>
 				<textarea rows="4" cols="50" 
 					id="<?php echo $this->plugin_name;?>-popup_text" 
 					name="<?php echo $this->plugin_name;?>[popup_text]" 
@@ -88,27 +92,33 @@
 		<br/>
 		
 		<fieldset>
-			<legend class="screen-reader-text"><span><?php _e('Do not load plugin css', $this->plugin_name);?></span></legend>
+			<legend class="screen-reader-text"><span><?php _e('Do not load the plugin css-file', $this->plugin_name);?></span></legend>
 			<label for="<?php echo $this->plugin_name;?>-css_off">
 				<input type="checkbox" id="<?php echo $this->plugin_name;?>-css_off" 
 				name="<?php echo $this->plugin_name;?>[css_off]" value="1" <?php checked( $css_off, 1 ); ?>  />
-				<span><?php esc_attr_e( 'Do not load plugin css', $this->plugin_name ); ?></span>
-				<i><?php esc_attr_e( '(you need to create your own styles for the popup)', $this->plugin_name ); ?></i>
+				<span><?php esc_attr_e( 'Do not load the plugin css-file', $this->plugin_name ); ?></span>
+				<i><?php esc_attr_e( '(you will need to create your own styles for the popup)', $this->plugin_name ); ?></i>
 			</label>
 		</fieldset>
 		
 		<br/>
-		
+		<hr/>
+
 		<fieldset>
 			<legend class="screen-reader-text"><span><?php _e('Debug this plugin', $this->plugin_name);?></span></legend>
 			<label for="<?php echo $this->plugin_name;?>-debug">
 				<input type="checkbox" id="<?php echo $this->plugin_name;?>-debug" 
 				name="<?php echo $this->plugin_name;?>[debug]" value="1" <?php checked( $debug, 1 ); ?>  />
 				<span><?php esc_attr_e( 'Debug this plugin', $this->plugin_name ); ?></span>
-				<i><?php esc_attr_e( '(makes the check popup on all browsers in any mode)', $this->plugin_name ); ?></i>
+				<i><?php esc_attr_e( '(makes the check popup on all browsers in any mode, regardless of the above settings)', $this->plugin_name ); ?></i>
 			</label>
 		</fieldset>
+		
+		<br/>
 
+		<button class="button-delete" id="<?php echo $this->plugin_name;?>-delete-cookie">Reset cookie</button>
+
+		<hr/>
 		
 		<?php submit_button(__('Save all changes', $this->plugin_name), 'primary','submit', TRUE); ?>
     </form>

@@ -1,6 +1,6 @@
 === Tigerton IE Compatibility Checker ===
 Contributors: (this should be a list of wordpress.org userid's)
-Tags: IE, internet explorer, compatibility mode, popup, warning
+Tags: IE, internet explorer, compatibility mode, popup, warning, checker
 Requires at least: 3.0.1
 Tested up to: 3.4
 Stable tag: 4.3
@@ -41,7 +41,7 @@ Stay tuned as it possibly will get updated with new features.
 
 = How to use WordPress Tigerton IE Check? =
 
-Just activate the plugin then go to the "Settings -> Tigerton IE Check" menu and just check the options you want.
+Just activate the plugin then go to the "Settings -> Tigerton IE Check" menu and check the options you want.
 
 == Screenshots ==
 

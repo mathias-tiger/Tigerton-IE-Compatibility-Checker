@@ -2,8 +2,7 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * Defines the plugin name, version, and two hooks for
- * enqueue the frontend-specific stylesheet and JavaScript.
+ * Defines the plugin name, version, and functions
  *
  * Also the functions for setting and updating cookies,
  * checking for IE mode and show the popup.
@@ -44,15 +43,15 @@ class Wp_tigerton_ie_check_Public {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-tigerton-ie-check-public.js', array( 'jquery' ), $this->version, true );	
 	}
 	
-	
     /**
 	 * Check the options and set cookie accordingly
 	 */
     public function wp_tigerton_ie_cookie() {
 
-		$cookie_time = time() + 86400 * 14; // 86400 = 1 day 
+		$cookie_time = strtotime( '+14 days' );
 	    
-	    if( !isset($_COOKIE['site_visitor']) ) {
+	    // if the cookie dont exist and the selected page type is shown
+	    if( !isset($_COOKIE['site_visitor']) && get_option($this->plugin_name)['check_only_on'] ) {
 		    $cookie_value = "new";
 		    setcookie( 'site_visitor', $cookie_value, $cookie_time, '/', COOKIE_DOMAIN);
 	    }
@@ -101,9 +100,8 @@ class Wp_tigerton_ie_check_Public {
 	 * check options, cookie, and if IE mode, chooses to display popup or not.
 	 */
     public function wp_tigerton_ie_add_popup_code() {
-	    $options   = get_option($this->plugin_name);
-    	 
-    	$page = $this->wp_tigerton_ie_checkPage();
+	    $options   	= get_option($this->plugin_name);
+    	$page 		= $this->wp_tigerton_ie_checkPage();
     	 
     	// If the page is the page you want to check
     	if( $page ){

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The plugin bootstrap file
  *
@@ -11,7 +10,7 @@
  * @wordpress-plugin
  * Plugin Name:       Tigerton IE Check
  * Plugin URI:        https://www.tigerton.se
- * Description:       WordPress plugin that tell users to turn of IE compatibility mode if enabled.
+ * Description:       WordPress plugin that tell visitors to turn of IE compatibility mode if enabled.
  * Version:           1.0.0
  * Author:            Mathias Karlsson
  * Author URI:        http://www.mathiascarlsson.se
