@@ -5,13 +5,13 @@
 	 */
 
 	// Remove the popup html on click
-	$('#tigerton-ie-checker-close-button').click(function() {	  
-		$('#tigerton-ie-checker-popup-bg').remove();
+	$('#ie-checker-close-button').click(function() {	  
+		$('#ie-checker-popup-bg').remove();
 	});	
 	
 	//Remove the popup html on click and set/update cookie
-	$('#tigerton-ie-checker-dismiss-button').click(function() {	  
-		$('#tigerton-ie-checker-popup-bg').remove();
+	$('#ie-checker-dismiss-button').click(function() {	  
+		$('#ie-checker-popup-bg').remove();
 		
 		//Set cookie
 		var d = new Date();

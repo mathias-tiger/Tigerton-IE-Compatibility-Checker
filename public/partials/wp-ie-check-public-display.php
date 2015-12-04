@@ -1,6 +1,8 @@
 <?php
 /**
  * The popup box that are displayed in the frontend.
+ *
+ * @author     Mathias Carlsson <info@mathiascarlsson.se>
  */
 	$options 	 = get_option($this->plugin_name);
 	$popup_text  = $options['popup_text'];
@@ -8,8 +10,8 @@
 	$dontCheck   = $options['check_never_again'];
 ?>
 
-<div id="tigerton-ie-checker-popup-bg">
-	<div id="tigerton-ie-checker-popup-inner">
+<div id="ie-checker-popup-bg">
+	<div id="ie-checker-popup-inner">
 		<?php 
 			if( !empty($popup_title) ) {
 				echo '<h1>' . esc_attr__( $popup_title, $this->plugin_name ) . '</h1>'; 
@@ -27,14 +29,14 @@
 				however having it enabled can break newer sites that were designed for modern browsers.', $this->plugin_name) . '</p>'; 
 			}
 		?>
-		<div id="tigerton-ie-checker-buttons">
+		<div id="ie-checker-buttons">
 			<?php if( $dontCheck ): ?>
-				<button id="tigerton-ie-checker-dismiss-button">
+				<button id="ie-checker-dismiss-button">
 					<?php _e('Dont show this message again', $this->plugin_name); ?>
 				</button>
 			<?php endif ?>
 			
-			<button id="tigerton-ie-checker-close-button">
+			<button id="ie-checker-close-button">
 				<?php _e('Close', $this->plugin_name); ?> 
 			</button>
 		</div>

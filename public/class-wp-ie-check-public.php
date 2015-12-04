@@ -6,8 +6,10 @@
  *
  * Also the functions for setting and updating cookies,
  * checking for IE mode and show the popup.
+ *
+ * @author     Mathias Carlsson <info@mathiascarlsson.se>
  */
-class Wp_tigerton_ie_check_Public {
+class WP_ie_check_Public {
 	// The ID of this plugin.
 	private $plugin_name;
 
@@ -21,7 +23,7 @@ class Wp_tigerton_ie_check_Public {
         $this->plugin_name 	= $plugin_name;
         $this->version 		= $version;
         
-        $this->wp_tigerton_ie_check_options = get_option($this->plugin_name);
+        $this->wp_ie_check_options = get_option($this->plugin_name);
     }
 
 	/**
@@ -31,7 +33,7 @@ class Wp_tigerton_ie_check_Public {
 		 
 		// If the option to turn off this plugin css is not checked, load css. 
 		if( !get_option($this->plugin_name)['css_off'] ){
-			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-tigerton-ie-check-public.css', array(), $this->version, 'all' );
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-ie-check-public.css', array(), $this->version, 'all' );
 		}	
 	}
 
@@ -40,13 +42,13 @@ class Wp_tigerton_ie_check_Public {
 	 */
 	public function enqueue_scripts() {
 				 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-tigerton-ie-check-public.js', array( 'jquery' ), $this->version, true );	
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-ie-check-public.js', array( 'jquery' ), $this->version, true );	
 	}
 	
     /**
 	 * Check the options and set cookie accordingly
 	 */
-    public function wp_tigerton_ie_cookie() {
+    public function wp_ie_cookie() {
 
 		$cookie_time = strtotime( '+14 days' );
 	    
@@ -60,7 +62,7 @@ class Wp_tigerton_ie_check_Public {
 	 /*
 	 * Returns true or false based on what page you are on.    
 	 */
-    public function wp_tigerton_ie_checkPage() {
+    public function wp_ie_checkPage() {
 	  $check_only_on  = get_option($this->plugin_name)['check_only_on'];
     
     	switch($check_only_on) {
@@ -99,15 +101,15 @@ class Wp_tigerton_ie_check_Public {
 	/**
 	 * check options, cookie, and if IE mode, chooses to display popup or not.
 	 */
-    public function wp_tigerton_ie_add_popup_code() {
+    public function WP_ie_add_popup_code() {
 	    $options   	= get_option($this->plugin_name);
-    	$page 		= $this->wp_tigerton_ie_checkPage();
+    	$page 		= $this->WP_ie_checkPage();
     	 
     	// If the page is the page you want to check
     	if( $page ){
 
     		if( $options['debug'] ) {
-				include_once( 'partials/wp-tigerton-ie-check-public-display.php' );
+				include_once( 'partials/wp-ie-check-public-display.php' );
 				return;
 			}
 	    	
@@ -143,7 +145,7 @@ class Wp_tigerton_ie_check_Public {
 				
 				// If the IE compatibility mode is on 
 				if( $IsOn ) {
-				    include_once( 'partials/wp-tigerton-ie-check-public-display.php' );
+				    include_once( 'partials/wp-ie-check-public-display.php' );
 			    }
 			}
 		}

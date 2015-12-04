@@ -5,8 +5,10 @@
  * Maintain a list of all hooks that are registered throughout
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
+ *
+ * @author     Mathias Carlsson <info@mathiascarlsson.se>
  */
-class Wp_tigerton_ie_check_Loader {
+class Wp_ie_check_Loader {
 
 	// The array of actions registered with WordPress.
 	protected $actions;

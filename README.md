@@ -1,1 +1,1 @@
-# Tigerton IE Compatibility Checker
+# IE Compatibility Checker

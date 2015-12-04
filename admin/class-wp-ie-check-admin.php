@@ -2,8 +2,10 @@
 /**
  * The admin-specific functionality of the plugin.
  * Defines the plugin name, version, and functions
+ *
+ * @author     Mathias Carlsson <info@mathiascarlsson.se>
  */
-class Wp_tigerton_ie_check_Admin {
+class WP_ie_check_Admin {
 
 	// The ID of this plugin.
 	private $plugin_name;
@@ -26,7 +28,7 @@ class Wp_tigerton_ie_check_Admin {
 	public function enqueue_styles() {
 		
 		//This function is provided for demonstration purposes only.
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-tigerton-ie-check-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-ie-check-admin.css', array(), $this->version, 'all' );
 	}
 
 	/**
@@ -35,7 +37,7 @@ class Wp_tigerton_ie_check_Admin {
 	public function enqueue_scripts() {
 		
 		//This function is provided for demonstration purposes only.
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-tigerton-ie-check-admin.js', array( 'jquery' ), $this->version, true );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-ie-check-admin.js', array( 'jquery' ), $this->version, true );
 	}
 
 	/**
@@ -48,7 +50,7 @@ class Wp_tigerton_ie_check_Admin {
 		 * NOTE:  Alternative menu locations are available via WordPress administration menu functions.
 		 *        Administration Menus: http://codex.wordpress.org/Administration_Menus
 		 */
-		add_options_page( 'Tigerton IE Checker Setup', 'Tigerton IE Checker', 'manage_options', $this->plugin_name, array($this, 'display_plugin_setup_page')
+		add_options_page( 'IE Checker Setup', 'IE Checker', 'manage_options', $this->plugin_name, array($this, 'display_plugin_setup_page')
 		);
 	}
 
@@ -69,7 +71,7 @@ class Wp_tigerton_ie_check_Admin {
 	 * Render the settings page for this plugin.
 	 */
 	public function display_plugin_setup_page() {
-		include_once( 'partials/wp-tigerton-ie-check-admin-display.php' );
+		include_once( 'partials/wp-ie-check-admin-display.php' );
 	}
 
 	/**

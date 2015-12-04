@@ -4,8 +4,10 @@
  *
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
+ *
+ * @author     Mathias Carlsson <info@mathiascarlsson.se>
  */
-class Wp_tigerton_ie_check_i18n {
+class Wp_ie_check_i18n {
 
 	private $domain;
 

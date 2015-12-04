@@ -1,13 +1,15 @@
 <?php
 /**
  * This file is used to markup the admin-facing aspects of the plugin.
+ *
+ * @author     Mathias Carlsson <info@mathiascarlsson.se>
  */
 ?>
 <div class="wrap" id="<?php echo $this->plugin_name;?>-wrapper">
 
 	<h2 class="nav-tab-wrapper"><?php echo esc_html( get_admin_page_title() ); ?></h2>
 	<br/>
-	<form method="post" name="tigerton_ie_checker_options" action="options.php">
+	<form method="post" name="ie_checker_options" action="options.php">
 		<?php
 			$options = get_option($this->plugin_name);
 	

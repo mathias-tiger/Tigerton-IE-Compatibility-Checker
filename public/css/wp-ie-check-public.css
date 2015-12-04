@@ -1,11 +1,13 @@
 /**
  * All of the CSS for frontend.
+ *
+ * @author     Mathias Carlsson <info@mathiascarlsson.se>
  */
  
  /**
   * PopUp styles
   */
- #tigerton-ie-checker-popup-bg{
+ #ie-checker-popup-bg{
 	position: fixed;
 	top: 		0;
 	bottom: 	0;
@@ -21,13 +23,13 @@
 	z-index: 9999;
  }
  
- #tigerton-ie-checker-popup-bg h1{
+ #ie-checker-popup-bg h1{
 	color: #000;
 	font-family: Arial; 
 	font-size: 18px; 
  }
  
- #tigerton-ie-checker-popup-inner{
+ #ie-checker-popup-inner{
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -41,13 +43,13 @@
 	min-height: 100px;
  }
  
- #tigerton-ie-checker-buttons{
+ #ie-checker-buttons{
  	position: relative;
 	width: 100%;
  }
  
- #tigerton-ie-checker-close-button, 
- #tigerton-ie-checker-dismiss-button{
+ #ie-checker-close-button, 
+ #ie-checker-dismiss-button{
 	position: relative;
 	margin: 10px 0px 10px 0px;
 	color: #fff;
@@ -64,8 +66,8 @@
 	text-decoration: none;
  } 
  
- #tigerton-ie-checker-close-button:hover, 
- #tigerton-ie-checker-dismiss-button:hover{
+ #ie-checker-close-button:hover, 
+ #ie-checker-dismiss-button:hover{
 	background-color: rgb(46, 157, 255); 
 	border: 1px solid transparent;
  }
